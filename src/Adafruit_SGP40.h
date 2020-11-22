@@ -24,7 +24,7 @@
 #include "Arduino.h"
 #include <Adafruit_BusIO_Register.h>
 #include <Adafruit_I2CDevice.h>
-extern "C"{
+extern "C" {
 #include "sensirion_arch_config.h"
 #include "sensirion_voc_algorithm.h"
 };
@@ -49,8 +49,8 @@ public:
   bool selfTest(void);
 
   bool softReset();
-  uint16_t measureRaw(float temperature=25, float humidity=50);
-
+  uint16_t measureRaw(float temperature = 25, float humidity = 50);
+  int32_t measureVocIndex(float temperature = 25, float humidity = 50);
 
   /** The 48-bit serial number, this value is set when you call {@link begin()}
    * **/
@@ -64,5 +64,7 @@ private:
                            uint16_t delay, uint16_t *readdata = NULL,
                            uint8_t readlen = 0);
   uint8_t generateCRC(uint8_t data[], uint8_t datalen);
+
+  VocAlgorithmParams voc_algorithm_params;
 };
 #endif // ndef ADAFRUIT_SGP40_H

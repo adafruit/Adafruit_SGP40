@@ -28,7 +28,7 @@
 #include "Adafruit_SGP40.h"
 #include "Arduino.h"
 
-#define I2C_DEBUG
+//#define I2C_DEBUG
 
 /*!
  *  @brief  Instantiates a new SGP40 class
@@ -65,7 +65,9 @@ boolean Adafruit_SGP40::begin(TwoWire *theWire) {
   command[1] = 0x2F;
   if (!readWordFromCommand(command, 2, 10, &featureset, 1))
     return false;
-  Serial.print("Featureset 0x"); Serial.println(featureset, HEX);
+  // Serial.print("Featureset 0x"); Serial.println(featureset, HEX);
+
+  VocAlgorithm_init(&voc_algorithm_params);
 
   return selfTest();
 }
@@ -100,29 +102,38 @@ bool Adafruit_SGP40::selfTest(void) {
   return false;
 }
 
+int32_t Adafruit_SGP40::measureVocIndex(float temperature = 25,
+                                        float humidity = 50) {
+  int32_t voc_index;
+  uint16_t sraw = measureRaw(temperature, humidity);
 
-uint16_t Adafruit_SGP40::measureRaw(float temperature=25, float humidity=50) {
+  VocAlgorithm_process(&voc_algorithm_params, sraw, &voc_index);
+  return voc_index;
+}
+
+uint16_t Adafruit_SGP40::measureRaw(float temperature = 25,
+                                    float humidity = 50) {
   uint8_t command[8];
   uint16_t reply;
-  
+
   command[0] = 0x26;
   command[1] = 0x0F;
-  
+
   uint16_t rhticks = (uint16_t)((humidity * 65535) / 100 + 0.5);
   command[2] = rhticks >> 8;
   command[3] = rhticks & 0xFF;
-  command[4] = generateCRC(command+2, 2);
+  command[4] = generateCRC(command + 2, 2);
   uint16_t tempticks = (uint16_t)(((temperature + 45) * 65535) / 175);
   command[5] = tempticks >> 8;
   command[6] = tempticks & 0xFF;
-  command[7] = generateCRC(command+5, 2);;
+  command[7] = generateCRC(command + 5, 2);
+  ;
 
   if (!readWordFromCommand(command, 8, 250, &reply, 1))
     return 0x0;
 
   return reply;
 }
-
 
 /*!
  *  @brief  I2C low level interfacing
