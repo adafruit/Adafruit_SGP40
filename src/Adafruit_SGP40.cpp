@@ -102,8 +102,8 @@ bool Adafruit_SGP40::selfTest(void) {
   return false;
 }
 
-int32_t Adafruit_SGP40::measureVocIndex(float temperature = 25,
-                                        float humidity = 50) {
+int32_t Adafruit_SGP40::measureVocIndex(float temperature,
+                                        float humidity) {
   int32_t voc_index;
   uint16_t sraw = measureRaw(temperature, humidity);
 
@@ -111,8 +111,8 @@ int32_t Adafruit_SGP40::measureVocIndex(float temperature = 25,
   return voc_index;
 }
 
-uint16_t Adafruit_SGP40::measureRaw(float temperature = 25,
-                                    float humidity = 50) {
+uint16_t Adafruit_SGP40::measureRaw(float temperature,
+                                    float humidity) {
   uint8_t command[8];
   uint16_t reply;
 
