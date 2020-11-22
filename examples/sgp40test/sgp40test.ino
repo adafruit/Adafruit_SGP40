@@ -24,7 +24,7 @@ int counter = 0;
 void loop() {
   uint16_t raw;
   
-  raw = sgp.IAQmeasureRaw();
+  raw = sgp.measureRaw();
 
   Serial.print("Measurement: ");
   Serial.println(raw);
