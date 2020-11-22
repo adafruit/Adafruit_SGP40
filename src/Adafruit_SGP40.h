@@ -24,6 +24,10 @@
 #include "Arduino.h"
 #include <Adafruit_BusIO_Register.h>
 #include <Adafruit_I2CDevice.h>
+extern "C"{
+#include "sensirion_arch_config.h"
+#include "sensirion_voc_algorithm.h"
+};
 
 // the i2c address
 #define SGP40_I2CADDR_DEFAULT 0x59 ///< SGP40 has only one I2C address
@@ -45,7 +49,7 @@ public:
   bool selfTest(void);
 
   bool softReset();
-  uint16_t IAQmeasureRaw();
+  uint16_t measureRaw(float temperature=25, float humidity=50);
 
 
   /** The 48-bit serial number, this value is set when you call {@link begin()}

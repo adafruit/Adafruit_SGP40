@@ -101,26 +101,27 @@ bool Adafruit_SGP40::selfTest(void) {
 }
 
 
-uint16_t Adafruit_SGP40::IAQmeasureRaw(void) {
+uint16_t Adafruit_SGP40::measureRaw(float temperature=25, float humidity=50) {
   uint8_t command[8];
   uint16_t reply;
-
+  
   command[0] = 0x26;
   command[1] = 0x0F;
-  command[2] = 0x80;
-  command[3] = 0x00;
-  command[4] = 0xA2;
-  command[5] = 0x66;
-  command[6] = 0x66;
-  command[7] = 0x93;
+  
+  uint16_t rhticks = (uint16_t)((humidity * 65535) / 100 + 0.5);
+  command[2] = rhticks >> 8;
+  command[3] = rhticks & 0xFF;
+  command[4] = generateCRC(command+2, 2);
+  uint16_t tempticks = (uint16_t)(((temperature + 45) * 65535) / 175);
+  command[5] = tempticks >> 8;
+  command[6] = tempticks & 0xFF;
+  command[7] = generateCRC(command+5, 2);;
 
   if (!readWordFromCommand(command, 8, 250, &reply, 1))
     return 0x0;
 
   return reply;
 }
-
-
 
 
 /*!
