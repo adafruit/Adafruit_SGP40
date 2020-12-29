@@ -1,11 +1,11 @@
 # Adafruit SGP40 Gas / Air Quality I2C sensor [![Build Status](https://github.com/adafruit/Adafruit_SGP40/workflows/Arduino%20Library%20CI/badge.svg)](https://github.com/adafruit/Adafruit_SGP40/actions)[![Documentation](https://github.com/adafruit/ci-arduino/blob/master/assets/doxygen_badge.svg)](http://adafruit.github.io/Adafruit_SGP40/html/index.html)
 
-<a href="https://www.adafruit.com/product/xxxx"><img src="assets/board.jpg?raw=true" width="500px"></a>
+<a href="https://www.adafruit.com/product/4829"><img src="https://cdn-shop.adafruit.com/970x728/4829-05.jpg" width="500px"></a>
 
 This is the Adafruit SGP40 Gas / Air Quality  I2C sensor library
 
 Tested and works great with the Aadafruit SGP40 Breakout Board 
-  * http://www.adafruit.com/products/xxxx
+  * http://www.adafruit.com/products/4829
 
 This chip uses I2C to communicate, 2 pins are required to interface
 
