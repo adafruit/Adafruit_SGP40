@@ -87,6 +87,11 @@ boolean Adafruit_SGP40::softReset(void) {
   return readWordFromCommand(command, 2, 10);
 }
 
+/**
+ * @brief Request the sensor to perform a self-test, returning the result
+ *
+ * @return true: success false:failure
+ */
 bool Adafruit_SGP40::selfTest(void) {
   uint8_t command[2];
   uint16_t reply;
@@ -102,6 +107,14 @@ bool Adafruit_SGP40::selfTest(void) {
   return false;
 }
 
+/**
+ * @brief Combined the measured gasses, temperature, and humidity
+ * to calculate the VOC Index
+ *
+ * @param temperature The measured temperature in degrees C
+ * @param humidity The measured relative humidity in % rH
+ * @return int32_t The VOC Index
+ */
 int32_t Adafruit_SGP40::measureVocIndex(float temperature, float humidity) {
   int32_t voc_index;
   uint16_t sraw = measureRaw(temperature, humidity);
@@ -110,6 +123,13 @@ int32_t Adafruit_SGP40::measureVocIndex(float temperature, float humidity) {
   return voc_index;
 }
 
+/**
+ * @brief Return the raw gas measurement
+ *
+ * @param temperature The measured temperature in degrees C
+ * @param humidity The measured relative humidity in % rH
+ * @return uint16_t The current raw gas measurement
+ */
 uint16_t Adafruit_SGP40::measureRaw(float temperature, float humidity) {
   uint8_t command[8];
   uint16_t reply;
