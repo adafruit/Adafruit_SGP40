@@ -7,7 +7,7 @@
  *
  * This is the documentation for Adafruit's SGP40 driver for the
  * Arduino platform.  It is designed specifically to work with the
- * Adafruit SGP40 breakout: http://www.adafruit.com/products/3709
+ * Adafruit SGP40 breakout: http://www.adafruit.com/products/4829
  *
  * These sensors use I2C to communicate, 2 pins (SCL+SDA) are required
  * to interface with the breakout.
