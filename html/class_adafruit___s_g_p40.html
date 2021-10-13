@@ -88,6 +88,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a4026b3ceefe609273270cdac94edfb8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Commands the sensor to perform a soft reset using the "General
 Call" mode. Take note that this is not sensor specific and all devices that support the General Call mode on the on the same I2C bus will perform this.  <a href="#a4026b3ceefe609273270cdac94edfb8c">More...</a><br /></td></tr>
 <tr class="separator:a4026b3ceefe609273270cdac94edfb8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af59d2f3e20dc33a1eb22f75a66dbaba5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___s_g_p40.html#af59d2f3e20dc33a1eb22f75a66dbaba5">heaterOff</a> ()</td></tr>
+<tr class="memdesc:af59d2f3e20dc33a1eb22f75a66dbaba5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Request the sensor to turn off heater to lower curent consumption. Launching a measurement automatically wakes up the sensor again.  <a href="#af59d2f3e20dc33a1eb22f75a66dbaba5">More...</a><br /></td></tr>
+<tr class="separator:af59d2f3e20dc33a1eb22f75a66dbaba5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a76d530d3f45a9570e318be633d891e49"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___s_g_p40.html#a76d530d3f45a9570e318be633d891e49">measureRaw</a> (float temperature=25, float humidity=50)</td></tr>
 <tr class="memdesc:a76d530d3f45a9570e318be633d891e49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the raw gas measurement.  <a href="#a76d530d3f45a9570e318be633d891e49">More...</a><br /></td></tr>
 <tr class="separator:a76d530d3f45a9570e318be633d891e49"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -170,6 +173,27 @@ Public Attributes</h2></td></tr>
 <p>Commands the sensor to perform a soft reset using the "General
 Call" mode. Take note that this is not sensor specific and all devices that support the General Call mode on the on the same I2C bus will perform this. </p>
 <dl class="section return"><dt>Returns</dt><dd>True if command completed successfully, false if something went wrong! </dd></dl>
+
+</div>
+</div>
+<a id="af59d2f3e20dc33a1eb22f75a66dbaba5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af59d2f3e20dc33a1eb22f75a66dbaba5">&#9670;&nbsp;</a></span>heaterOff()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Adafruit_SGP40::heaterOff </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Request the sensor to turn off heater to lower curent consumption. Launching a measurement automatically wakes up the sensor again. </p>
+<dl class="section return"><dt>Returns</dt><dd>true: success false: failure </dd></dl>
 
 </div>
 </div>

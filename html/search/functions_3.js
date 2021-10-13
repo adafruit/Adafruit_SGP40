@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['selftest',['selfTest',['../class_adafruit___s_g_p40.html#a071976e64c4c55cd8ec545db32fd1d70',1,'Adafruit_SGP40']]],
-  ['softreset',['softReset',['../class_adafruit___s_g_p40.html#a4026b3ceefe609273270cdac94edfb8c',1,'Adafruit_SGP40']]]
+  ['measureraw',['measureRaw',['../class_adafruit___s_g_p40.html#a76d530d3f45a9570e318be633d891e49',1,'Adafruit_SGP40']]],
+  ['measurevocindex',['measureVocIndex',['../class_adafruit___s_g_p40.html#a6db9297d2ea4ef0f1c42ed0c3c6745b3',1,'Adafruit_SGP40']]]
 ];
