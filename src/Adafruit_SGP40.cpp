@@ -88,6 +88,19 @@ boolean Adafruit_SGP40::softReset(void) {
 }
 
 /**
+ * @brief Request the sensor to turn off heater to lower curent consumption.
+ *        Launching a measurement automatically wakes up the sensor again.
+ *
+ * @return true: success false: failure
+ */
+bool Adafruit_SGP40::heaterOff(void) {
+  uint8_t command[2];
+  command[0] = 0x36;
+  command[1] = 0x15;
+  return i2c_dev->write(command, 2);
+}
+
+/**
  * @brief Request the sensor to perform a self-test, returning the result
  *
  * @return true: success false:failure
