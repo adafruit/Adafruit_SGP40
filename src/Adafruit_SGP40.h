@@ -56,8 +56,8 @@ public:
  /*
  * functions for storing and restoring VocAlgorithm state
  */
-  bool getStates(int32_t* state0, int32_t* state1);
-  bool setStates(int32_t state0, int32_t state1);
+  void getStates(int32_t* state0, int32_t* state1);
+  void setStates(int32_t state0, int32_t state1);
 
   /** The 48-bit serial number, this value is set when you call {@link begin()}
    * **/

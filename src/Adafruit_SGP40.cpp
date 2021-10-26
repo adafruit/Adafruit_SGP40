@@ -170,19 +170,25 @@ uint16_t Adafruit_SGP40::measureRaw(float temperature, float humidity) {
 /**
  * @brief get VocAlgorithm state
  *
- * @param temperature The measured temperature in degrees C
- * @param humidity The measured relative humidity in % rH
+ * @param state0 first state value
+ * @param state1 second state value
  * @return uint16_t The current raw gas measurement
  */
-bool Adafruit_SGP40::getStates(int32_t* state0, int32_t* state1)
+void Adafruit_SGP40::getStates(int32_t* state0, int32_t* state1)
 {
   VocAlgorithm_get_states(&voc_algorithm_params, state0, state1);
-  return true;
 }
-bool Adafruit_SGP40::setStates(int32_t state0, int32_t state1)
+
+/**
+ * @brief set VocAlgorithm state
+ *
+ * @param state0 The measured temperature in degrees C
+ * @param state1 The measured relative humidity in % rH
+ * @return uint16_t The current raw gas measurement
+ */
+void Adafruit_SGP40::setStates(int32_t state0, int32_t state1)
 {
   VocAlgorithm_set_states(&voc_algorithm_params, state0, state1);
-  return true;
 }
 
 /*!
