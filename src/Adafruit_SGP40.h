@@ -52,6 +52,12 @@ public:
   uint16_t measureRaw(float temperature = 25, float humidity = 50);
   int32_t measureVocIndex(float temperature = 25, float humidity = 50);
 
+ /*
+ * functions for storing and restoring VocAlgorithm state
+ */
+  bool getStates(int32_t* state0, int32_t* state1);
+  bool setStates(int32_t state0, int32_t state1);
+
   /** The 48-bit serial number, this value is set when you call {@link begin()}
    * **/
   uint16_t serialnumber[3];
