@@ -49,6 +49,7 @@ public:
   bool selfTest(void);
 
   bool softReset();
+  bool heaterOff();
   uint16_t measureRaw(float temperature = 25, float humidity = 50);
   int32_t measureVocIndex(float temperature = 25, float humidity = 50);
 
