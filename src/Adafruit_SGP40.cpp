@@ -69,7 +69,6 @@ boolean Adafruit_SGP40::begin(TwoWire *theWire) {
 
   VocAlgorithm_init(&voc_algorithm_params);
 
-
   return selfTest();
 }
 
@@ -173,8 +172,7 @@ uint16_t Adafruit_SGP40::measureRaw(float temperature, float humidity) {
  * @param state0 first state value
  * @param state1 second state value
  */
-void Adafruit_SGP40::getStates(int32_t* state0, int32_t* state1)
-{
+void Adafruit_SGP40::getStates(int32_t *state0, int32_t *state1) {
   VocAlgorithm_get_states(&voc_algorithm_params, state0, state1);
 }
 
@@ -184,8 +182,7 @@ void Adafruit_SGP40::getStates(int32_t* state0, int32_t* state1)
  * @param state0 first state value
  * @param state1 second state value
  */
-void Adafruit_SGP40::setStates(int32_t state0, int32_t state1)
-{
+void Adafruit_SGP40::setStates(int32_t state0, int32_t state1) {
   VocAlgorithm_set_states(&voc_algorithm_params, state0, state1);
 }
 
