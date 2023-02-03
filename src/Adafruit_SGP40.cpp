@@ -112,7 +112,7 @@ bool Adafruit_SGP40::selfTest(void) {
   command[0] = 0x28;
   command[1] = 0x0E;
 
-  if (!readWordFromCommand(command, 2, 250, &reply, 1))
+  if (!readWordFromCommand(command, 2, 500, &reply, 1))
     return false;
   if ((reply == 0xD400)) {
     return true;
