@@ -166,6 +166,26 @@ uint16_t Adafruit_SGP40::measureRaw(float temperature, float humidity) {
   return reply;
 }
 
+/**
+ * @brief get VocAlgorithm state
+ *
+ * @param state0 first state value
+ * @param state1 second state value
+ */
+void Adafruit_SGP40::getStates(int32_t *state0, int32_t *state1) {
+  VocAlgorithm_get_states(&voc_algorithm_params, state0, state1);
+}
+
+/**
+ * @brief set VocAlgorithm state
+ *
+ * @param state0 first state value
+ * @param state1 second state value
+ */
+void Adafruit_SGP40::setStates(int32_t state0, int32_t state1) {
+  VocAlgorithm_set_states(&voc_algorithm_params, state0, state1);
+}
+
 /*!
  *  @brief  I2C low level interfacing
  */
