@@ -52,6 +52,7 @@ public:
   bool heaterOff();
   uint16_t measureRaw(float temperature = 25, float humidity = 50);
   int32_t measureVocIndex(float temperature = 25, float humidity = 50);
+  int32_t calculateVocIndex(uint16_t sraw, float temperature = 25, float humidity = 50);
 
   /** The 48-bit serial number, this value is set when you call {@link begin()}
    * **/
