@@ -137,6 +137,23 @@ int32_t Adafruit_SGP40::measureVocIndex(float temperature, float humidity) {
 }
 
 /**
+ * @brief Combined the measured gasses, temperature, and humidity
+ * to calculate the VOC Index
+ *
+ * @param sraw The measured raw value
+ * @param temperature The measured temperature in degrees C
+ * @param humidity The measured relative humidity in % rH
+ * @return int32_t The VOC Index
+ */
+int32_t Adafruit_SGP40::calculateVocIndex(uint16_t sraw, float temperature,
+                                          float humidity) {
+  int32_t voc_index;
+
+  VocAlgorithm_process(&voc_algorithm_params, sraw, &voc_index);
+  return voc_index;
+}
+
+/**
  * @brief Return the raw gas measurement
  *
  * @param temperature The measured temperature in degrees C
@@ -160,7 +177,7 @@ uint16_t Adafruit_SGP40::measureRaw(float temperature, float humidity) {
   command[7] = generateCRC(command + 5, 2);
   ;
 
-  if (!readWordFromCommand(command, 8, 250, &reply, 1))
+  if (!readWordFromCommand(command, 8, 100, &reply, 1))
     return 0x0;
 
   return reply;
