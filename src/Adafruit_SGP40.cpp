@@ -145,9 +145,10 @@ int32_t Adafruit_SGP40::measureVocIndex(float temperature, float humidity) {
  * @param humidity The measured relative humidity in % rH
  * @return int32_t The VOC Index
  */
-int32_t Adafruit_SGP40::calculateVocIndex(uint16_t sraw, float temperature, float humidity) {
+int32_t Adafruit_SGP40::calculateVocIndex(uint16_t sraw, float temperature,
+                                          float humidity) {
   int32_t voc_index;
-  
+
   VocAlgorithm_process(&voc_algorithm_params, sraw, &voc_index);
   return voc_index;
 }
@@ -181,8 +182,6 @@ uint16_t Adafruit_SGP40::measureRaw(float temperature, float humidity) {
 
   return reply;
 }
-
-
 
 /*!
  *  @brief  I2C low level interfacing
