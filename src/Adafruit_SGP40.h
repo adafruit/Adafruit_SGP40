@@ -33,10 +33,10 @@ extern "C" {
 #define SGP40_I2CADDR_DEFAULT 0x59 ///< SGP40 has only one I2C address
 
 // commands and constants
-#define SGP40_FEATURESET 0x0020 ///< The required set for this library
+#define SGP40_FEATURESET 0x0020    ///< The required set for this library
 #define SGP40_CRC8_POLYNOMIAL 0x31 ///< Seed for SGP40's CRC polynomial
-#define SGP40_CRC8_INIT 0xFF ///< Init value for CRC
-#define SGP40_WORD_LEN 2 ///< 2 bytes per word
+#define SGP40_CRC8_INIT 0xFF       ///< Init value for CRC
+#define SGP40_WORD_LEN 2           ///< 2 bytes per word
 
 /*!
  *  @brief  Class that stores state and functions for interacting with
