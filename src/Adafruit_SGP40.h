@@ -51,6 +51,8 @@ public:
   bool softReset();
   bool heaterOff();
   uint16_t measureRaw(float temperature = 25, float humidity = 50);
+  uint16_t measureRawAsync(float temperature = 25, float humidity = 50);
+  uint16_t getRawAsyncResult();
   int32_t measureVocIndex(float temperature = 25, float humidity = 50);
 
   /** The 48-bit serial number, this value is set when you call {@link begin()}
@@ -61,9 +63,11 @@ private:
   Adafruit_I2CDevice *i2c_dev = NULL; ///< Pointer to I2C bus interface
   void write(uint8_t address, uint8_t *data, uint8_t n);
   void read(uint8_t address, uint8_t *data, uint8_t n);
+  bool sendCommand(uint8_t command[], uint8_t commandLength);
+  bool readWord(uint16_t *readdata = NULL, uint8_t readlen = 0);
   bool readWordFromCommand(uint8_t command[], uint8_t commandLength,
-                           uint16_t delayms, uint16_t *readdata = NULL,
-                           uint8_t readlen = 0);
+      uint16_t delayms, uint16_t* readdata = NULL,
+      uint8_t readlen = 0);
   uint8_t generateCRC(uint8_t data[], uint8_t datalen);
 
   VocAlgorithmParams voc_algorithm_params;

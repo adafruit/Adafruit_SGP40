@@ -166,6 +166,32 @@ uint16_t Adafruit_SGP40::measureRaw(float temperature, float humidity) {
   return reply;
 }
 
+uint16_t Adafruit_SGP40::measureRawAsync(float temperature, float humidity) {
+    uint8_t command[8];
+    uint16_t reply;
+
+    command[0] = 0x26;
+    command[1] = 0x0F;
+
+    uint16_t rhticks = (uint16_t)((humidity * 65535) / 100 + 0.5);
+    command[2] = rhticks >> 8;
+    command[3] = rhticks & 0xFF;
+    command[4] = generateCRC(command + 2, 2);
+    uint16_t tempticks = (uint16_t)(((temperature + 45) * 65535) / 175);
+    command[5] = tempticks >> 8;
+    command[6] = tempticks & 0xFF;
+    command[7] = generateCRC(command + 5, 2);
+
+    return sendCommand(command, 8);
+}
+
+uint16_t Adafruit_SGP40::getRawAsyncResult()
+{
+    uint16_t reply;
+    readWord(&reply, 1);
+    return reply;
+}
+
 /*!
  *  @brief  I2C low level interfacing
  */
@@ -212,6 +238,50 @@ bool Adafruit_SGP40::readWordFromCommand(uint8_t command[],
   }
   return true;
 }
+
+bool Adafruit_SGP40::sendCommand(uint8_t command[], uint8_t commandLength)
+{
+    if (!i2c_dev->write(command, commandLength)) {
+        return false;
+    }
+    return true;
+}
+
+bool Adafruit_SGP40::readWord(uint16_t* readdata, uint8_t readlen)
+{
+    if (readlen == 0)
+        return true;
+
+    uint8_t replylen = readlen * (SGP40_WORD_LEN + 1);
+    uint8_t replybuffer[replylen];
+
+    if (!i2c_dev->read(replybuffer, replylen)) {
+        return false;
+    }
+
+    for (uint8_t i = 0; i < readlen; i++) {
+        uint8_t crc = generateCRC(replybuffer + i * 3, 2);
+#ifdef I2C_DEBUG
+        Serial.print("\t\tCRC calced: 0x");
+        Serial.print(crc, HEX);
+        Serial.print(" vs. 0x");
+        Serial.println(replybuffer[i * 3 + 2], HEX);
+#endif
+        if (crc != replybuffer[i * 3 + 2])
+            return false;
+        // success! store it
+        readdata[i] = replybuffer[i * 3];
+        readdata[i] <<= 8;
+        readdata[i] |= replybuffer[i * 3 + 1];
+#ifdef I2C_DEBUG
+        Serial.print("\t\tRead: 0x");
+        Serial.println(readdata[i], HEX);
+#endif
+    }
+    return true;
+}
+
+
 
 uint8_t Adafruit_SGP40::generateCRC(uint8_t *data, uint8_t datalen) {
   // calculates 8-Bit checksum with given polynomial
