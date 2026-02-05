@@ -26,9 +26,10 @@
  */
 
 #include "Adafruit_SGP40.h"
+
 #include "Arduino.h"
 
-//#define I2C_DEBUG
+// #define I2C_DEBUG
 
 /*!
  *  @brief  Instantiates a new SGP40 class
@@ -43,7 +44,7 @@ Adafruit_SGP40::Adafruit_SGP40() {}
  *          Optional pointer to I2C interface, otherwise use Wire
  *  @return True if SGP40 found on I2C, False if something went wrong!
  */
-boolean Adafruit_SGP40::begin(TwoWire *theWire) {
+boolean Adafruit_SGP40::begin(TwoWire* theWire) {
   if (i2c_dev) {
     delete i2c_dev; // remove old interface
   }
@@ -172,9 +173,8 @@ uint16_t Adafruit_SGP40::measureRaw(float temperature, float humidity) {
 
 bool Adafruit_SGP40::readWordFromCommand(uint8_t command[],
                                          uint8_t commandLength,
-                                         uint16_t delayms, uint16_t *readdata,
+                                         uint16_t delayms, uint16_t* readdata,
                                          uint8_t readlen) {
-
   if (!i2c_dev->write(command, commandLength)) {
     return false;
   }
@@ -213,7 +213,7 @@ bool Adafruit_SGP40::readWordFromCommand(uint8_t command[],
   return true;
 }
 
-uint8_t Adafruit_SGP40::generateCRC(uint8_t *data, uint8_t datalen) {
+uint8_t Adafruit_SGP40::generateCRC(uint8_t* data, uint8_t datalen) {
   // calculates 8-Bit checksum with given polynomial
   uint8_t crc = SGP40_CRC8_INIT;
 
