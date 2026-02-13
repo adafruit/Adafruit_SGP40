@@ -40,8 +40,8 @@
 
 typedef int32_t fix16_t;
 
-#define F16(x)                                                                 \
-  ((fix16_t)(((x) >= 0) ? ((x)*65536.0 + 0.5) : ((x)*65536.0 - 0.5)))
+#define F16(x) \
+  ((fix16_t)(((x) >= 0) ? ((x) * 65536.0 + 0.5) : ((x) * 65536.0 - 0.5)))
 
 #define VocAlgorithm_SAMPLING_INTERVAL (1.)
 #define VocAlgorithm_INITIAL_BLACKOUT (45.)
@@ -114,7 +114,7 @@ typedef struct {
  * whenever the sensor stopped measurements.
  * @param params    Pointer to the VocAlgorithmParams struct
  */
-void VocAlgorithm_init(VocAlgorithmParams *params);
+void VocAlgorithm_init(VocAlgorithmParams* params);
 
 /**
  * Get current algorithm states. Retrieved values can be used in
@@ -125,8 +125,8 @@ void VocAlgorithm_init(VocAlgorithmParams *params);
  * @param state0    State0 to be stored
  * @param state1    State1 to be stored
  */
-void VocAlgorithm_get_states(VocAlgorithmParams *params, int32_t *state0,
-                             int32_t *state1);
+void VocAlgorithm_get_states(VocAlgorithmParams* params, int32_t* state0,
+                             int32_t* state1);
 
 /**
  * Set previously retrieved algorithm states to resume operation after a short
@@ -138,7 +138,7 @@ void VocAlgorithm_get_states(VocAlgorithmParams *params, int32_t *state0,
  * @param state0    State0 to be restored
  * @param state1    State1 to be restored
  */
-void VocAlgorithm_set_states(VocAlgorithmParams *params, int32_t state0,
+void VocAlgorithm_set_states(VocAlgorithmParams* params, int32_t state0,
                              int32_t state1);
 
 /**
@@ -162,7 +162,7 @@ void VocAlgorithm_set_states(VocAlgorithmParams *params, int32_t state0,
  *                                    device-to-device variations.
  *                                    Range 10..500, default 50
  */
-void VocAlgorithm_set_tuning_parameters(VocAlgorithmParams *params,
+void VocAlgorithm_set_tuning_parameters(VocAlgorithmParams* params,
                                         int32_t voc_index_offset,
                                         int32_t learning_time_hours,
                                         int32_t gating_max_duration_minutes,
@@ -176,7 +176,7 @@ void VocAlgorithm_set_tuning_parameters(VocAlgorithmParams *params,
  * @param voc_index Calculated VOC index value from the raw sensor value. Zero
  *                  during initial blackout period and 1..500 afterwards
  */
-void VocAlgorithm_process(VocAlgorithmParams *params, int32_t sraw,
-                          int32_t *voc_index);
+void VocAlgorithm_process(VocAlgorithmParams* params, int32_t sraw,
+                          int32_t* voc_index);
 
 #endif /* VOCALGORITHM_H_ */

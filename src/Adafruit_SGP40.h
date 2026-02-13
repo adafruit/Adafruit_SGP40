@@ -21,9 +21,10 @@
 #ifndef ADAFRUIT_SGP40_H
 #define ADAFRUIT_SGP40_H
 
-#include "Arduino.h"
 #include <Adafruit_BusIO_Register.h>
 #include <Adafruit_I2CDevice.h>
+
+#include "Arduino.h"
 extern "C" {
 #include "sensirion_arch_config.h"
 #include "sensirion_voc_algorithm.h"
@@ -43,9 +44,9 @@ extern "C" {
  *          SGP40 Gas Sensor
  */
 class Adafruit_SGP40 {
-public:
+ public:
   Adafruit_SGP40();
-  bool begin(TwoWire *theWire = &Wire);
+  bool begin(TwoWire* theWire = &Wire);
   bool selfTest(void);
 
   bool softReset();
@@ -57,12 +58,12 @@ public:
    * **/
   uint16_t serialnumber[3];
 
-private:
-  Adafruit_I2CDevice *i2c_dev = NULL; ///< Pointer to I2C bus interface
-  void write(uint8_t address, uint8_t *data, uint8_t n);
-  void read(uint8_t address, uint8_t *data, uint8_t n);
+ private:
+  Adafruit_I2CDevice* i2c_dev = NULL; ///< Pointer to I2C bus interface
+  void write(uint8_t address, uint8_t* data, uint8_t n);
+  void read(uint8_t address, uint8_t* data, uint8_t n);
   bool readWordFromCommand(uint8_t command[], uint8_t commandLength,
-                           uint16_t delayms, uint16_t *readdata = NULL,
+                           uint16_t delayms, uint16_t* readdata = NULL,
                            uint8_t readlen = 0);
   uint8_t generateCRC(uint8_t data[], uint8_t datalen);
 
