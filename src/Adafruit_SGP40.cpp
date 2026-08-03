@@ -37,6 +37,15 @@
 Adafruit_SGP40::Adafruit_SGP40() {}
 
 /*!
+ *  @brief  Frees memory used by SGP40 class
+ */
+Adafruit_SGP40::~Adafruit_SGP40() {
+  if (i2c_dev) {
+    delete i2c_dev;
+  }
+}
+
+/*!
  *  @brief  Setups the hardware and detects a valid SGP40. Initializes I2C
  *          then reads the serialnumber and checks that we are talking to an
  * SGP40

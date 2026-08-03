@@ -46,6 +46,7 @@ extern "C" {
 class Adafruit_SGP40 {
  public:
   Adafruit_SGP40();
+  ~Adafruit_SGP40();
   bool begin(TwoWire* theWire = &Wire);
   bool selfTest(void);
 
